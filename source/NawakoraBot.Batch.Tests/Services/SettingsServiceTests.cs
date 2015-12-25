@@ -19,6 +19,17 @@ namespace NawakoraBot.Services.Tests {
     public class SettingsServiceTests {
 
         /// <summary>
+        /// テスト クラスを初期化します。
+        /// </summary>
+        /// <param name="testContext"><see cref="Microsoft.VisualStudio.TestTools.UnitTesting.TestContext"/>。</param>
+        [ClassInitialize()]
+        public static void ClassInitialize(TestContext testContext) {
+            var webRootPath = testContext.TestRunResultsDirectory;
+            Environment.SetEnvironmentVariable("WEBROOT_PATH", webRootPath);
+            Directory.CreateDirectory(Path.Combine(webRootPath, "App_Data"));
+        }
+
+        /// <summary>
         /// <see cref="NawakoraBot.Services.SettingsService.Load"/> をテストします。
         /// </summary>
         [TestMethod()]
